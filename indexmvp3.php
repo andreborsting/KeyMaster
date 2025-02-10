@@ -1,10 +1,4 @@
 <?php
-    
-    require_once __DIR__ . '/api.php';
-
-    $url = 'https://highscores.martindilling.com/api/v1/games';
-    $response = apiGet($url);
-
 ?>
 
 <!DOCTYPE html>
