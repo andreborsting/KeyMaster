@@ -1,0 +1,132 @@
+html {
+  font-size: 10px;
+  background: url(pictures/flux1-forest1_upscayl_2x_upscayl-standard-4x.png) bottom center;
+  background-size: cover;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-height: 100vh;
+}
+
+
+.parisienne-regular {
+  font-family: "Parisienne", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.aref-ruqaa-regular {
+  font-family: "Aref Ruqaa", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.aref-ruqaa-bold {
+  font-family: "Aref Ruqaa", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+
+h1 {
+  font-family: "Parisienne", serif;
+  color: aliceblue;
+  font-size: 30pt;
+  display: flex;
+  justify-content: left;
+  margin-top: 100px;
+  margin-left: 30px;
+}
+
+h2 {
+  font-family: "Aref Ruqaa", serif;
+  color: aliceblue;
+  font-size: 40pt;
+  display: flex;
+  justify-content: left;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.playing-column1 {
+  display: flex;
+  flex-direction: column;
+  /* Beholder den vertikale opsætning */
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: .2rem solid black;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.4);
+  width: 10rem;
+  height: 500px;
+  /* Juster bredde, hvis nødvendigt */
+  margin-right: 750px;
+}
+
+.appearing-keys{
+  display: flex;
+  flex-direction: column;
+  /* Beholder den vertikale opsætning */
+  border: .2rem solid black;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.4);
+  margin-right: 750px;
+}
+
+h3 {
+  font-size: 50px;
+}
+
+.keys {
+  font-family: "Aref Ruqaa", serif;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: left;
+  min-height: 10vh;
+  margin-right: 2rem;
+}
+
+.key {
+  border: .2rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .30s ease;
+  width: 10rem;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.playing {
+  transform: scale(0.5);
+  border-color: #277b7e;
+  box-shadow: 0 0 1rem #000000;
+}
+
+kbd {
+  display: block;
+  font-size: 3rem;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #000000;
+}
