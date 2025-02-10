@@ -1,13 +1,16 @@
 <?php
 
+$config = require 'config.php';
+
 function apiCall(string $method, string $url, ?array $payload = null): array
 {
-    $token = '11|RsmzCDzmZ8yRFXov1cznFZtDINrWUJwbcZkVU10o173dd83b';
-    $url = 'https://highscores.martindilling.com/api/v1/games';
+
+    global $config;
+
     $headers = [
         'Accept: application/json',
         'Content-type: application/json',
-        'Authorization: Bearer ' . $token,
+        'Authorization: Bearer ' . $config['api_token'],
     ];
 
     $curl = curl_init();
