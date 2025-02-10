@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: company_php
+    container_name: keymaster_php
     depends_on:
       - mysql  
     ports:
@@ -13,7 +13,7 @@ services:
 
   mysql:
     image: mysql:latest
-    container_name: company_mysql
+    container_name: keymaster_mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: company
@@ -24,7 +24,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: fulldemo_phpmyadmin
+    container_name: keymaster_phpmyadmin
     depends_on:
       - mysql
     environment:
