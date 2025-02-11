@@ -71,7 +71,6 @@
             </div>
         </div>
         <div class="playing-area">
-            <div class="playing-column1">
                 <p>Tryk på tasterne som vises her </p>
                 <div class="appearing-keys">
                     <!-- forsøger at oprette animerede klodser her -->
@@ -105,8 +104,8 @@
             audio.play();
         }
 
-        const keys = Array.from(document.querySelectorAll('.key'));
-        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        const keysSound = Array.from(document.querySelectorAll('.key'));
+        keysSound.forEach(key => key.addEventListener('transitionend', removeTransition));
         window.addEventListener('keydown', playSound);
     </script>
 
@@ -121,17 +120,20 @@
             const keyElement = document.createElement('div');
             keyElement.classList.add('animated-key');
             keyElement.textContent = randomKey;
-            keyElement.style.left = `${Math.random() * 80}%`;
+            keyElement.style.left = `${Math.random() * 80}%`;  // Random horizontal position
+            keyElement.style.top = `-50px`; // Start just above the screen
             appearingKeysContainer.appendChild(keyElement);
             keyElement.addEventListener('animationend', () => {
                 keyElement.remove();
             });
+
             return randomKey;
         }
 
         let gameInterval;
 
         function startGame() {
+            if (gameInterval) clearInterval(gameInterval);
             gameInterval = setInterval(() => {
                 const randomKey = createRandomKey();
                 animateKey(randomKey);
@@ -143,7 +145,7 @@
         }
 
         function animateKey(key) {
-            const keyElement = document.querySelector(`appearing-keys .animated-key`);
+            const keyElement = document.querySelector(`.appearing-keys .animated-key`);
             if (keyElement && keyElement.textContent === key) {
                 keyElement.style.animation = 'moveDown 2s linear forwards';
             }
@@ -162,7 +164,6 @@
         }
 
         window.addEventListener('keydown', checkKeyPress);
-        startGame();
 
     </script>
 

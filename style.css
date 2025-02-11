@@ -14,19 +14,18 @@ html {
 
 button {
   font-size: 2rem; /* Øg skriftstørrelsen */
-  padding: 15px 30px; /* Øg størrelsen på knappen */
-  margin: 50px;
-  background-color: #4CAF50; /* Grønt for en bedre visuel effekt */
+  padding: 30px 30px; /* Øg størrelsen på knappen */
+  margin: 30px;
+  background-color: #000000; /* Grønt for en bedre visuel effekt */
   color: white;
-  border: none;
 }
 
 @keyframes moveDown {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(-100%); /* Start above the container */
   }
   100% {
-    transform: translateY(100vh);
+    transform: translateY(80vh); /* Ensure it doesn't go past the bottom */
   }
 }
 
@@ -38,6 +37,8 @@ button {
   padding: 10px;
   border-radius: 5px;
   animation: moveDown 2s linear forwards;
+  text-align: center;
+  width: 50px;
 }
 
 .parisienne-regular {
@@ -97,16 +98,10 @@ h2 {
   margin-top: 20px; /* Adds some space above the playing area */
 }
 
-
-
-.appearing-keys{
-  display: flex;
-  flex-direction: column;
-  /* Beholder den vertikale opsætning */
-  border: .2rem solid black;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.4);
-  margin-right: 750px;
+.appearing-keys {
+  position: relative; /* Ensures keys are positioned relative to the playing area */
+  width: 100%; /* Takes full width of the playing area */
+  height: 100%; /* Takes full height of the playing area */
 }
 
 h3 {
