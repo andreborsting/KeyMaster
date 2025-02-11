@@ -87,20 +87,17 @@ h2 {
   align-items: flex-start;
 }
 
-.playing-column1 {
-  display: flex;
-  flex-direction: column;
-  /* Beholder den vertikale opsætning */
-  justify-content: flex-start;
-  align-items: flex-start;
-  border: .2rem solid black;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.4);
-  width: 10rem;
-  height: 500px;
-  /* Juster bredde, hvis nødvendigt */
-  margin-right: 750px;
+.playing-area {
+  position: relative; /* Allows child elements to be positioned absolutely */
+  width: 100%; /* Takes full width of its container */
+  height: 500px; /* Set a fixed height for the playing area */
+  overflow: hidden; /* Prevents keys from overflowing outside the container */
+  border: 0.2rem solid black; /* Optional: Adds a border for visual clarity */
+  background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
+  margin-top: 20px; /* Adds some space above the playing area */
 }
+
+
 
 .appearing-keys{
   display: flex;
