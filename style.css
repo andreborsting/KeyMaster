@@ -12,6 +12,29 @@ html {
   min-height: 100vh;
 }
 
+button {
+  size: 20px;
+  margin: 100px;
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.animated-key {
+  position: absolute;
+  font-size: 2rem;
+  color: white;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  animation: moveDown 2s linear forwards;
+}
 
 .parisienne-regular {
   font-family: "Parisienne", serif;

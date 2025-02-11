@@ -21,8 +21,13 @@
 </head>
 
 <body>
-
-
+    <!-- knapper til start og stop af spillet -->
+     <button onclick="startGame()">Start</button>
+     <button onclick="stopGame()">Stop</button>
+    <!-- score implementeres herunder -->
+    <div class = "score">
+        <h2>Score:&nbsp;<span id="score">0</span></h2>
+    </div>
     <h1>Level:</h1>
     <h2>"QWERTY"</h2>
 
@@ -69,7 +74,7 @@
             <div class="playing-column1">
                 <p>Tryk på tasterne som vises her </p>
                 <div class="appearing-keys">
-                    <h3>Q</h3>
+                    <!-- forsøger at oprette animerede klodser her -->
                 </div>
             </div>
         </div>
@@ -103,6 +108,61 @@
         const keys = Array.from(document.querySelectorAll('.key'));
         keys.forEach(key => key.addEventListener('transitionend', removeTransition));
         window.addEventListener('keydown', playSound);
+    </script>
+
+        <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
+    <script>
+        const keys = ['Q', 'W', 'E', 'R', 'T', 'Y'];
+        const appearingKeysContainer = document.querySelector('.appearing-keys');
+        let score = 0;
+
+        function createRandomKey() {
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            const keyElement = document.createElement('div');
+            keyElement.classList.add('animated-key');
+            keyElement.textContent = randomKey;
+            keyElement.style.left = `${Math.random() * 80}%`;
+            appearingKeysContainer.appendChild(keyElement);
+            keyElement.addEventListener('animationend', () => {
+                keyElement.remove();
+            });
+            return randomKey;
+        }
+
+        let gameInterval;
+
+        function startGame() {
+            gameInterval = setInterval(() => {
+                const randomKey = createRandomKey();
+                animateKey(randomKey);
+            }, 2000);
+        }
+
+        function stopGame() {
+            clearInterval(gameInterval);
+        }
+
+        function animateKey(key) {
+            const keyElement = document.querySelector(`.animated-key`);
+            if (keyElement && keyElement.textContent === key) {
+                keyElement.style.animation = 'moveDown 2s linear';
+            }
+        }
+
+        function checkKeyPress(e) {
+            const pressedKey = String.fromCharCode(e.keyCode);
+            const currentKey = document.querySelector('.animated-key')?.textContent;
+
+            if (pressedKey === currentKey) {
+                score++;
+                document.getElementById('score').textContent = score;
+                document.querySelector('.animated-key').remove();
+            }
+        }
+
+        window.addEventListener('keydown', checkKeyPress);
+        startGame();
+
     </script>
 
 
