@@ -143,21 +143,22 @@
         }
 
         function animateKey(key) {
-            const keyElement = document.querySelector(`.animated-key`);
+            const keyElement = document.querySelector(`appearing-keys .animated-key`);
             if (keyElement && keyElement.textContent === key) {
-                keyElement.style.animation = 'moveDown 2s linear';
+                keyElement.style.animation = 'moveDown 2s linear forwards';
             }
         }
 
         function checkKeyPress(e) {
             const pressedKey = String.fromCharCode(e.keyCode);
-            const currentKey = document.querySelector('.animated-key')?.textContent;
+            const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
 
-            if (pressedKey === currentKey) {
+            if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
                 score++;
                 document.getElementById('score').textContent = score;
-                document.querySelector('.animated-key').remove();
+                currentKeyElement.remove();
             }
+
         }
 
         window.addEventListener('keydown', checkKeyPress);

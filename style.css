@@ -13,8 +13,12 @@ html {
 }
 
 button {
-  size: 20px;
-  margin: 100px;
+  font-size: 2rem; /* Øg skriftstørrelsen */
+  padding: 15px 30px; /* Øg størrelsen på knappen */
+  margin: 50px;
+  background-color: #4CAF50; /* Grønt for en bedre visuel effekt */
+  color: white;
+  border: none;
 }
 
 @keyframes moveDown {
