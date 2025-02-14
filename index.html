@@ -25,12 +25,16 @@
 
 <body>
     <div class="ui-container">
-        <button onclick="startGame()">Start</button>
-        <button onclick="stopGame()">Stop</button>
-        <div class = "score">
-            <h2>Score h2:&nbsp;<span id="score">0</span></h2>
+        <div class="button-container">
+            <button onclick="startGame()">Start</button>
+            <button onclick="stopGame()">Stop</button>
         </div>
-        <h2>Level h1: QWERTY</h2>
+        <div class="score-and-level-container">
+            <div class = "score">
+                <h2>Score:&nbsp;<span id="score">0</span></h2>
+            </div>
+            <h2>Level: "QWERTY"</h2>
+        </div>
     </div>
 
     <!-- se "keycode.info" 
@@ -49,27 +53,27 @@
         <div class="keys">
             <div data-key="81" class="key">
                 <kbd>Q</kbd>
-                <span class="sound">Name</span>
+                <!-- <span class="sound">Name</span> -->
             </div>
             <div data-key="87" class="key">
                 <kbd>W</kbd>
-                <span class="sound">Name</span>
+                <!-- <span class="sound">Name</span> -->
             </div>
             <div data-key="69" class="key">
                 <kbd>E</kbd>
-                <span class="sound">Name</span>
+                <!-- <span class="soundname">Name</span> -->
             </div>
             <div data-key="82" class="key">
                 <kbd>R</kbd>
-                <span class="sound">Name</span>
+                <!-- <span class="soundname">Name</span> -->
             </div>
             <div data-key="84" class="key">
                 <kbd>T</kbd>
-                <span class="sound">Name</span>
+                <!-- <span class="sound">Name</span> -->
             </div>
             <div data-key="89" class="key">
                 <kbd>Y</kbd>
-                <span class="sound">Name</span>
+                <!-- <span class="sound">Name</span> -->
             </div>
         </div>
     </div>
