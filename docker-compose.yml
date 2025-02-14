@@ -11,17 +11,17 @@ services:
     volumes:
       - .:/var/www/html
 
-  php2:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      container_name: keymaster_php2
-      depends_on:
-        - mysql  
-      ports:
-        - 8081:80
-      volumes:
-        - .:/var/www/html
+  # php2:
+  #     build:
+  #       context: .
+  #       dockerfile: Dockerfile
+  #     container_name: keymaster_php2
+  #     depends_on:
+  #       - mysql  
+  #     ports:
+  #       - 8081:80
+  #     volumes:
+  #       - .:/var/www/html
 
   mysql:
     image: mysql:latest
