@@ -79,7 +79,7 @@ h2 {
   width: 80%; /* Takes full width of its container */
   height: 500px; /* Set a fixed height for the playing area */
   overflow: hidden; /* Prevents keys from overflowing outside the container */
-  border: 0.2rem solid black; /* Optional: Adds a border for visual clarity */
+  border: 0.2rem solid aliceblue;
   background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
   margin-top: 20px; /* Adds some space above the playing area */
   margin: auto; /* responsiv efter størrelse på vindue */
@@ -109,7 +109,9 @@ h3 {
   font-size: 50px;
 }
 
-.keys {
+
+
+.kbd-keys {
   font-family: "Aref Ruqaa", serif;
   display: flex;
   justify-content: center;
@@ -118,18 +120,30 @@ h3 {
   margin-right: 2rem;
 }
 
-.key {
-  border: .2rem solid black;
-  border-radius: .5rem;
-  margin: 1rem;
+.kbd-key {
+  color: aliceblue;
+  border: .2rem solid aliceblue;
+  border-radius: 20px;
+  margin: 0.5rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
   transition: all .30s ease;
   width: 10rem;
   text-align: center;
-  color: white;
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 .5rem black;
+}
+
+kbd {
+  display: block;
+  font-size: 3rem;
+}
+
+.kbd-soundname {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #000000;
 }
 
 .playing {
@@ -138,14 +152,3 @@ h3 {
   box-shadow: 0 0 1rem #000000;
 }
 
-kbd {
-  display: block;
-  font-size: 3rem;
-}
-
-.soundname {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: .1rem;
-  color: #000000;
-}

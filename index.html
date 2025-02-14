@@ -47,33 +47,33 @@
     y= 89
     -->
 
-    <!-- venstre side af skærmen (tasterne)
-    "Data-"(attribut) + "key"(custom attribut navn) -->
+    
+    <!-- "Data-"(attribut) + "key"(custom attribut navn) -->
     <div class="key-container">
-        <div class="keys">
-            <div data-key="81" class="key">
+        <div class="kbd-keys">
+            <div data-key="81" class="kbd-key">
                 <kbd>Q</kbd>
-                <!-- <span class="sound">Name</span> -->
+                <!-- <span class="kbd-soundname">Name</span> -->
             </div>
-            <div data-key="87" class="key">
+            <div data-key="87" class="kbd-key">
                 <kbd>W</kbd>
-                <!-- <span class="sound">Name</span> -->
+                <!-- <span class="kbd-soundname">Name</span> -->
             </div>
-            <div data-key="69" class="key">
+            <div data-key="69" class="kbd-key">
                 <kbd>E</kbd>
-                <!-- <span class="soundname">Name</span> -->
+                <!-- <span class="kbd-soundname">Name</span> -->
             </div>
-            <div data-key="82" class="key">
+            <div data-key="82" class="kbd-key">
                 <kbd>R</kbd>
-                <!-- <span class="soundname">Name</span> -->
+                <!-- <span class="kbd-soundname">Name</span> -->
             </div>
-            <div data-key="84" class="key">
+            <div data-key="84" class="kbd-key">
                 <kbd>T</kbd>
-                <!-- <span class="sound">Name</span> -->
+                <!-- <span class="kbd-soundname">Name</span> -->
             </div>
-            <div data-key="89" class="key">
+            <div data-key="89" class="kbd-key">
                 <kbd>Y</kbd>
-                <!-- <span class="sound">Name</span> -->
+                <!-- <span class="kbd-soundname">Name</span> -->
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
     <div class="playing-area">
                 <p>Tryk på tasterne som vises her </p>
                 <div class="appearing-keys">
-                    <!-- forsøger at oprette animerede klodser her -->
+                    <!-- de animerede taster/klodser skal vises her -->
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
             audio.play();
         }
 
-        const keysSound = Array.from(document.querySelectorAll('.key'));
+        const keysSound = Array.from(document.querySelectorAll('.kbd-key'));
         keysSound.forEach(key => key.addEventListener('transitionend', removeTransition));
         window.addEventListener('keydown', playSound);
     </script>
