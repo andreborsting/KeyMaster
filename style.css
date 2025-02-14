@@ -30,10 +30,18 @@ html {
   font-style: normal;
 }
 
+.ui-container{
+  display: flex;
+  flex-direction: row;
+}
+
 button {
+  width: 100px;
+  margin-top: 100px ;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 100px;
   font-size: 2rem; /* Øg skriftstørrelsen */
-  padding: 10px 30px; /* Øg størrelsen på knappen */
-  margin: 30px;
   background-color: #000000; /* Grønt for en bedre visuel effekt */
   color: white;
 }
@@ -47,22 +55,10 @@ button {
   }
 }
 
-.animated-key {
-  position: absolute;
-  font-size: 2rem;
-  color: white;
-  background-color: #333;
-  padding: 10px;
-  border-radius: 5px;
-  animation: moveDown 2s linear forwards;
-  text-align: center;
-  width: 50px;
-}
-
 h1 {
   font-family: "Parisienne", serif;
   color: aliceblue;
-  font-size: 30pt;
+  font-size: 20pt;
   display: flex;
   justify-content: left;
   margin-top: 100px;
@@ -72,18 +68,13 @@ h1 {
 h2 {
   font-family: "Aref Ruqaa", serif;
   color: aliceblue;
-  font-size: 40pt;
+  font-size: 20pt;
   display: flex;
   justify-content: left;
   margin-top: 10px;
   margin-left: 30px;
 }
 
-.container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
 
 .playing-area {
   position: relative; /* Allows child elements to be positioned absolutely */
@@ -103,6 +94,19 @@ h2 {
   height: 100%; /* Takes full height of the playing area */
 }
 
+
+.animated-key {
+  position: absolute;
+  font-size: 2rem;
+  color: white;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  animation: moveDown 2s linear forwards;
+  text-align: center;
+  width: 50px;
+}
+
 h3 {
   font-size: 50px;
 }
@@ -110,9 +114,8 @@ h3 {
 .keys {
   font-family: "Aref Ruqaa", serif;
   display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: left;
+  justify-content: center;
+  margin: auto;
   min-height: 10vh;
   margin-right: 2rem;
 }
