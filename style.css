@@ -12,9 +12,27 @@ html {
   min-height: 100vh;
 }
 
+.parisienne-regular {
+  font-family: "Parisienne", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.aref-ruqaa-regular {
+  font-family: "Aref Ruqaa", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.aref-ruqaa-bold {
+  font-family: "Aref Ruqaa", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 button {
   font-size: 2rem; /* Øg skriftstørrelsen */
-  padding: 30px 30px; /* Øg størrelsen på knappen */
+  padding: 10px 30px; /* Øg størrelsen på knappen */
   margin: 30px;
   background-color: #000000; /* Grønt for en bedre visuel effekt */
   color: white;
@@ -41,26 +59,6 @@ button {
   width: 50px;
 }
 
-.parisienne-regular {
-  font-family: "Parisienne", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.aref-ruqaa-regular {
-  font-family: "Aref Ruqaa", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.aref-ruqaa-bold {
-  font-family: "Aref Ruqaa", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-
-
 h1 {
   font-family: "Parisienne", serif;
   color: aliceblue;
@@ -81,7 +79,6 @@ h2 {
   margin-left: 30px;
 }
 
-
 .container {
   display: flex;
   justify-content: flex-start;
@@ -90,13 +87,15 @@ h2 {
 
 .playing-area {
   position: relative; /* Allows child elements to be positioned absolutely */
-  width: 100%; /* Takes full width of its container */
+  width: 80%; /* Takes full width of its container */
   height: 500px; /* Set a fixed height for the playing area */
   overflow: hidden; /* Prevents keys from overflowing outside the container */
   border: 0.2rem solid black; /* Optional: Adds a border for visual clarity */
   background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
   margin-top: 20px; /* Adds some space above the playing area */
+  margin: auto; /* responsiv efter størrelse på vindue */
 }
+
 
 .appearing-keys {
   position: relative; /* Ensures keys are positioned relative to the playing area */
