@@ -2,7 +2,7 @@
  årsag: live server fungerer med html
 <?php
 ?> 
--->
+
 
 <!doctype html>
 <html lang="en">
@@ -22,6 +22,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
+
+<audio id="background-music" loop>
+    <source src="lvl1-sounds/KeyMasterLVL1_BG.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <body>
     <div class="ui-container">
@@ -130,6 +135,8 @@
 
         <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
     <script>
+        const backgroundMusic = document.getElementById('background-music');
+
         const keys = ['Q', 'W', 'E', 'R', 'T', 'Y'];
         const appearingKeysContainer = document.querySelector('.appearing-keys');
         let score = 0;
@@ -157,10 +164,16 @@
                 const randomKey = createRandomKey();
                 animateKey(randomKey);
             }, 2000);
+
+            backgroundMusic.play();
+
         }
 
         function stopGame() {
             clearInterval(gameInterval);
+
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
         }
 
         function animateKey(key) {
