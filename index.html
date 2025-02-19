@@ -8,18 +8,18 @@
 <html lang="en">
 <head>
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="favicon_io/site.webmanifest">
-    <meta charset="UTF-8">
-    <title>KeyMaster</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="manifest" href="favicon_io/site.webmanifest">
+<meta charset="UTF-8">
+<title>KeyMaster</title>
+<link rel="stylesheet" href="style.css">
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -28,6 +28,14 @@
     Your browser does not support the audio element.
 </audio>
 
+<style>
+    html {
+        font-size: 10px;
+        background: url(pictures/freepik-colorful1.jpg) bottom center;
+        background-size: cover;
+    }
+</style>
+
 <body>
     <div class="ui-container">
         <div class="button-container">
@@ -35,7 +43,7 @@
             <button onclick="stopGame()">Stop</button>
         </div>
         <div class="score-and-level-container">
-            <div class = "score">
+            <div class="score">
                 <h2>Score:&nbsp;<span id="score">0</span></h2>
             </div>
             <h2>Level: "QWERTY"</h2>
@@ -52,7 +60,7 @@
     y= 89
     -->
 
-    
+
     <!-- "Data-"(attribut) + "key"(custom attribut navn) -->
     <div class="key-container">
         <div class="kbd-keys">
@@ -82,14 +90,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="playing-area">
-                <p>Tryk på tasterne som vises her </p>
-                <div class="appearing-keys">
-                    <!-- de animerede taster/klodser skal vises her -->
-                </div>
-            </div>
+        <p>Tryk på tasterne som vises her </p>
+        <div class="appearing-keys">
+            <!-- de animerede taster/klodser skal vises her -->
         </div>
+    </div>
+    </div>
 
 
     <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
@@ -101,11 +109,11 @@
             <arrow>højre</arrow>
         </div>
     </div>
-    
 
-    
+
+
     <!-- lydene til tasterne  -->
-    <audio data-key="81" src="lvl1-sounds/q.wav" preload="auto" ></audio>
+    <audio data-key="81" src="lvl1-sounds/q.wav" preload="auto"></audio>
     <audio data-key="87" src="lvl1-sounds/w.wav" preload="auto"></audio>
     <audio data-key="69" src="lvl1-sounds/e.wav" preload="auto"></audio>
     <audio data-key="82" src="lvl1-sounds/r.wav" preload="auto"></audio>
@@ -133,7 +141,7 @@
         window.addEventListener('keydown', playSound);
     </script>
 
-        <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
+    <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
     <script>
         const backgroundMusic = document.getElementById('background-music');
 
