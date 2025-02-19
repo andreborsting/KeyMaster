@@ -8,18 +8,18 @@
 <html lang="en">
 <head>
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="favicon_io/site.webmanifest">
-    <meta charset="UTF-8">
-    <title>KeyMaster</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="manifest" href="favicon_io/site.webmanifest">
+<meta charset="UTF-8">
+<title>KeyMaster</title>
+<link rel="stylesheet" href="style.css">
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -35,6 +35,20 @@
         background: url(pictures/1.png) bottom center;
         background-size: cover;
     }
+
+    .kbd-key {
+        color: aliceblue;
+        border: .2rem solid aliceblue;
+        border-radius: 20px;
+        margin: 0.5rem;
+        font-size: 1.5rem;
+        padding: 1rem .5rem;
+        transition: all .30s ease;
+        width: 10rem;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.4);
+        text-shadow: 0 0 .5rem black;
+    }
 </style>
 
 <body>
@@ -44,7 +58,7 @@
             <button onclick="stopGame()">Stop</button>
         </div>
         <div class="score-and-level-container">
-            <div class = "score">
+            <div class="score">
                 <h2>Score:&nbsp;<span id="score">0</span></h2>
             </div>
             <h2>Level: "OHSJIT"</h2>
@@ -61,7 +75,7 @@
     t= 84
     -->
 
-    
+
     <!-- "Data-"(attribut) + "key"(custom attribut navn) -->
     <div class="key-container">
         <div class="kbd-keys">
@@ -91,14 +105,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="playing-area">
-                <p>Tryk på tasterne som vises her </p>
-                <div class="appearing-keys">
-                    <!-- de animerede taster/klodser skal vises her -->
-                </div>
-            </div>
+        <p>Tryk på tasterne som vises her </p>
+        <div class="appearing-keys">
+            <!-- de animerede taster/klodser skal vises her -->
         </div>
+    </div>
+    </div>
 
 
     <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
@@ -110,11 +124,11 @@
             <arrow>højre</arrow>
         </div>
     </div>
-    
 
-    
+
+
     <!-- lydene til tasterne  -->
-    <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto" ></audio>
+    <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto"></audio>
     <audio data-key="72" src="lvl2-sounds/H.wav" preload="auto"></audio>
     <audio data-key="83" src="lvl2-sounds/S.wav" preload="auto"></audio>
     <audio data-key="74" src="lvl2-sounds/J.wav" preload="auto"></audio>
@@ -142,7 +156,7 @@
         window.addEventListener('keydown', playSound);
     </script>
 
-        <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
+    <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
     <script>
         const backgroundMusic = document.getElementById('background-music');
 
@@ -156,7 +170,7 @@
             let randomKey;
             do {
                 randomKey = keys[Math.floor(Math.random() * keys.length)];
-            }   while (randomKey === lastKey);
+            } while (randomKey === lastKey);
 
             lastKey = randomKey;
 
