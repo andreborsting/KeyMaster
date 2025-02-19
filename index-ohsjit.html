@@ -1,0 +1,206 @@
+<!-- replace ".html" with ".php"
+ årsag: live server fungerer med html
+<?php
+?> 
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <meta charset="UTF-8">
+    <title>KeyMaster</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<audio id="background-music" loop>
+    <source src="/lvl2-sounds/OHSJIT1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<body>
+    <div class="ui-container">
+        <div class="button-container">
+            <button onclick="startGame()">Start</button>
+            <button onclick="stopGame()">Stop</button>
+        </div>
+        <div class="score-and-level-container">
+            <div class = "score">
+                <h2>Score:&nbsp;<span id="score">0</span></h2>
+            </div>
+            <h2>Level: "OHSJIT"</h2>
+        </div>
+    </div>
+
+    <!-- se "keycode.info" 
+     event.which (use .key or .code) 
+    o= 79
+    h= 72
+    s= 83
+    j= 74
+    i= 73
+    t= 84
+    -->
+
+    
+    <!-- "Data-"(attribut) + "key"(custom attribut navn) -->
+    <div class="key-container">
+        <div class="kbd-keys">
+            <div data-key="79" class="kbd-key">
+                <kbd>O</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="72" class="kbd-key">
+                <kbd>H</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="83" class="kbd-key">
+                <kbd>S</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="74" class="kbd-key">
+                <kbd>J</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="73" class="kbd-key">
+                <kbd>I</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="84" class="kbd-key">
+                <kbd>T</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="playing-area">
+                <p>Tryk på tasterne som vises her </p>
+                <div class="appearing-keys">
+                    <!-- de animerede taster/klodser skal vises her -->
+                </div>
+            </div>
+        </div>
+
+
+    <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
+     funktioner
+     kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
+    <div class="arrow-container">
+        <div class="arrows">
+            <arrow>venstre</arrow>
+            <arrow>højre</arrow>
+        </div>
+    </div>
+    
+
+    
+    <!-- lydene til tasterne  -->
+    <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto" ></audio>
+    <audio data-key="72" src="lvl2-sounds/H.wav" preload="auto"></audio>
+    <audio data-key="83" src="lvl2-sounds/S.wav" preload="auto"></audio>
+    <audio data-key="74" src="lvl2-sounds/J.wav" preload="auto"></audio>
+    <audio data-key="73" src="lvl2-sounds/I.wav" preload="auto"></audio>
+    <audio data-key="84" src="lvl2-sounds/T.wav" preload="auto"></audio>
+
+    <script>
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
+        }
+
+        function playSound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+            if (!audio) return;
+
+            key.classList.add('playing');
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        const keysSound = Array.from(document.querySelectorAll('.kbd-key'));
+        keysSound.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
+    </script>
+
+        <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
+    <script>
+        const backgroundMusic = document.getElementById('background-music');
+
+        const keys = ['O', 'H', 'S', 'H', 'I', 'T'];
+        const appearingKeysContainer = document.querySelector('.appearing-keys');
+        let score = 0;
+
+        function createRandomKey() {
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            const keyElement = document.createElement('div');
+            keyElement.classList.add('animated-key');
+            keyElement.textContent = randomKey;
+            keyElement.style.left = `${Math.random() * 80}%`;  // Random horizontal position
+            keyElement.style.top = `-50px`; // Start just above the screen
+            appearingKeysContainer.appendChild(keyElement);
+            keyElement.addEventListener('animationend', () => {
+                keyElement.remove();
+            });
+
+            return randomKey;
+        }
+
+        let gameInterval;
+
+        // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08
+        function startGame() {
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(() => {
+                const randomKey = createRandomKey();
+                animateKey(randomKey);
+            }, 923.08);
+
+            backgroundMusic.play();
+
+        }
+
+        function stopGame() {
+            clearInterval(gameInterval);
+
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+        }
+
+        function animateKey(key) {
+            const keyElement = document.querySelector(`.appearing-keys .animated-key`);
+            if (keyElement && keyElement.textContent === key) {
+                keyElement.style.animation = 'moveDown 2s linear forwards';
+            }
+        }
+
+        function checkKeyPress(e) {
+            const pressedKey = String.fromCharCode(e.keyCode);
+            const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
+
+            if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
+                score++;
+                document.getElementById('score').textContent = score;
+                currentKeyElement.remove();
+            }
+
+        }
+
+        window.addEventListener('keydown', checkKeyPress);
+
+    </script>
+
+
+</body>
+
+</html>
