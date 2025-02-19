@@ -141,8 +141,16 @@
         const appearingKeysContainer = document.querySelector('.appearing-keys');
         let score = 0;
 
+        let lastKey = '';
+
         function createRandomKey() {
-            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            let randomKey;
+            do {
+                randomKey = keys[Math.floor(Math.random() * keys.length)];
+            }   while (randomKey === lastKey);
+
+            lastKey = randomKey;
+
             const keyElement = document.createElement('div');
             keyElement.classList.add('animated-key');
             keyElement.textContent = randomKey;
