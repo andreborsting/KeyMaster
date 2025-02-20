@@ -189,13 +189,13 @@
 
         let gameInterval;
 
-        // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08
+        // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
         function startGame() {
             if (gameInterval) clearInterval(gameInterval);
             gameInterval = setInterval(() => {
                 const randomKey = createRandomKey();
                 animateKey(randomKey);
-            }, 923.08);
+            }, 1824.608);
 
             backgroundMusic.play();
 
