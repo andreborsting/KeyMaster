@@ -1,3 +1,10 @@
+
+html {
+  font-size: 10px;
+  background: url(pictures/1.png) bottom center;
+  background-size: cover;
+}
+
 body,
 html {
   margin: 0;
@@ -122,6 +129,20 @@ h3 {
   margin: auto;
   min-height: 10vh;
   margin-right: 2rem;
+}
+
+.kbd-key {
+  color: aliceblue;
+  border: .2rem solid aliceblue;
+  border-radius: 20px;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .30s ease;
+  width: 10rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 .5rem black;
 }
 
 kbd {

@@ -1,57 +1,31 @@
-<!-- replace ".html" with ".php"
- årsag: live server fungerer med html
-<?php
-?> 
-
-
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- favicon -->
-<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="manifest" href="favicon_io/site.webmanifest">
-<meta charset="UTF-8">
-<title>KeyMaster</title>
-<link rel="stylesheet" href="style.css">
-<!-- fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <meta charset="UTF-8">
+    <title>KeyMaster</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
-
-<audio id="background-music" loop>
-    <source src="/lvl2-sounds/OHSJIT1.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-<style>
-    html {
-        font-size: 10px;
-        background: url(pictures/1.png) bottom center;
-        background-size: cover;
-    }
-
-    .kbd-key {
-        color: aliceblue;
-        border: .2rem solid aliceblue;
-        border-radius: 20px;
-        margin: 0.5rem;
-        font-size: 1.5rem;
-        padding: 1rem .5rem;
-        transition: all .30s ease;
-        width: 10rem;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.4);
-        text-shadow: 0 0 .5rem black;
-    }
-</style>
-
 <body>
+
+    <audio id="background-music" loop>
+        <source src="/lvl2-sounds/OHSJIT1.mp3" type="audio/mpeg">
+    </audio>
+    
     <div class="ui-container">
         <div class="button-container">
             <button onclick="startGame()">Start</button>
@@ -112,18 +86,16 @@
             <!-- de animerede taster/klodser skal vises her -->
         </div>
     </div>
-    </div>
-
 
     <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
      funktioner
      kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
-    <div class="arrow-container">
+    <!-- <div class="arrow-container">
         <div class="arrows">
             <arrow>venstre</arrow>
             <arrow>højre</arrow>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -136,11 +108,6 @@
     <audio data-key="84" src="lvl2-sounds/T.wav" preload="auto"></audio>
 
     <script>
-        function removeTransition(e) {
-            if (e.propertyName !== 'transform') return;
-            e.target.classList.remove('playing');
-        }
-
         function playSound(e) {
             const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
             const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
@@ -149,6 +116,11 @@
             key.classList.add('playing');
             audio.currentTime = 0;
             audio.play();
+        }
+
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
         }
 
         const keysSound = Array.from(document.querySelectorAll('.kbd-key'));
@@ -187,6 +159,13 @@
             return randomKey;
         }
 
+        function animateKey(key) {
+            const keyElement = document.querySelector(`.appearing-keys .animated-key`);
+            if (keyElement && keyElement.textContent === key) {
+                keyElement.style.animation = 'moveDown 2s linear forwards';
+            }
+        }
+
         let gameInterval;
 
         // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
@@ -216,12 +195,7 @@
             backgroundMusic.currentTime = 0;
         }
 
-        function animateKey(key) {
-            const keyElement = document.querySelector(`.appearing-keys .animated-key`);
-            if (keyElement && keyElement.textContent === key) {
-                keyElement.style.animation = 'moveDown 2s linear forwards';
-            }
-        }
+       
 
         function checkKeyPress(e) {
             const pressedKey = String.fromCharCode(e.keyCode);

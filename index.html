@@ -1,56 +1,31 @@
-<!-- replace ".html" with ".php"
- årsag: live server fungerer med html
-<?php
-?> 
-
-
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- favicon -->
-<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="manifest" href="favicon_io/site.webmanifest">
-<meta charset="UTF-8">
-<title>KeyMaster</title>
-<link rel="stylesheet" href="style.css">
-<!-- fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <meta charset="UTF-8">
+    <title>KeyMaster</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
-<audio id="background-music" loop>
-    <source src="lvl1-sounds/KeyMasterLVL1_BG.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-
-<style>
-    html {
-        font-size: 10px;
-        background: url(pictures/freepik-colorful1.jpg) bottom center;
-        background-size: cover;
-    }
-
-    .kbd-key {
-        color: aliceblue;
-        border: .2rem solid aliceblue;
-        border-radius: 20px;
-        margin: 0.5rem;
-        font-size: 1.5rem;
-        padding: 1rem .5rem;
-        transition: all .30s ease;
-        width: 10rem;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.4);
-        text-shadow: 0 0 .5rem black;
-    }
-</style>
-
 <body>
+
+    <audio id="background-music" loop>
+        <source src="lvl1-sounds/KeyMasterLVL1_BG.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="ui-container">
         <div class="button-container">
             <button onclick="startGame()">Start</button>
@@ -117,12 +92,12 @@
     <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
      funktioner
      kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
-    <div class="arrow-container">
+    <!-- <div class="arrow-container">
         <div class="arrows">
             <arrow>venstre</arrow>
             <arrow>højre</arrow>
         </div>
-    </div>
+    </div> -->
 
 
 
