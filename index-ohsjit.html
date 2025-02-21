@@ -20,12 +20,20 @@
 
 </head>
 
+<style>
+    html {
+        font-size: 10px;
+        background: url(pictures/freepik-colorful1.jpg) bottom center;
+        background-size: cover;
+    }
+</style>
+
 <body>
 
     <audio id="background-music" loop>
         <source src="/lvl2-sounds/OHSJIT1.mp3" type="audio/mpeg">
     </audio>
-    
+
     <div class="ui-container">
         <div class="button-container">
             <button onclick="startGame()">Start</button>
@@ -154,7 +162,7 @@
             const indicator = document.createElement('div');
             indicator.classList.add('time-indicator');
             keyElement.appendChild(indicator);
-            indicator.style.animation ='shrinkBorder 2s linear forwards';
+            indicator.style.animation = 'shrinkBorder 2s linear forwards';
 
             appearingKeysContainer.appendChild(keyElement);
             keyElement.addEventListener('animationend', () => {
@@ -164,7 +172,7 @@
             return randomKey;
         }
 
-       
+
 
 
         function animateKey(key) {
@@ -203,7 +211,7 @@
             backgroundMusic.currentTime = 0;
         }
 
-       
+
 
         function checkKeyPress(e) {
             const pressedKey = String.fromCharCode(e.keyCode);

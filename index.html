@@ -20,6 +20,15 @@
 
 </head>
 
+
+<style>
+    html {
+        font-size: 10px;
+        background: url(pictures/freepik-colorful1.jpg) bottom center;
+        background-size: cover;
+    }
+</style>
+
 <body>
 
     <audio id="background-music" loop>
@@ -110,11 +119,6 @@
     <audio data-key="89" src="lvl1-sounds/y.wav" preload="auto"></audio>
 
     <script>
-        function removeTransition(e) {
-            if (e.propertyName !== 'transform') return;
-            e.target.classList.remove('playing');
-        }
-
         function playSound(e) {
             const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
             const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
@@ -125,26 +129,46 @@
             audio.play();
         }
 
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
+        }
+
         const keysSound = Array.from(document.querySelectorAll('.kbd-key'));
         keysSound.forEach(key => key.addEventListener('transitionend', removeTransition));
         window.addEventListener('keydown', playSound);
-    </script>
 
-    <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
-    <script>
+        // Implementering af "appearingKeys" og pointsystem 
         const backgroundMusic = document.getElementById('background-music');
 
-        const keys = ['Q', 'W', 'E', 'R', 'T', 'Y'];
+        const keys = ['O', 'H', 'S', 'J', 'I', 'T'];
         const appearingKeysContainer = document.querySelector('.appearing-keys');
         let score = 0;
 
+        let lastKey = '';
+
+
+        // skabelsen af random keys
         function createRandomKey() {
-            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            let randomKey;
+            do {
+                randomKey = keys[Math.floor(Math.random() * keys.length)];
+            } while (randomKey === lastKey);
+
+            lastKey = randomKey;
+
             const keyElement = document.createElement('div');
             keyElement.classList.add('animated-key');
             keyElement.textContent = randomKey;
             keyElement.style.left = `${Math.random() * 80}%`;  // Random horizontal position
             keyElement.style.top = `-50px`; // Start just above the screen
+
+            // forsøger at oprette en div omkring tasten, som "tidsindikator"
+            const indicator = document.createElement('div');
+            indicator.classList.add('time-indicator');
+            keyElement.appendChild(indicator);
+            indicator.style.animation ='shrinkBorder 2s linear forwards';
+
             appearingKeysContainer.appendChild(keyElement);
             keyElement.addEventListener('animationend', () => {
                 keyElement.remove();
@@ -153,25 +177,8 @@
             return randomKey;
         }
 
-        let gameInterval;
+       
 
-        function startGame() {
-            if (gameInterval) clearInterval(gameInterval);
-            gameInterval = setInterval(() => {
-                const randomKey = createRandomKey();
-                animateKey(randomKey);
-            }, 2000);
-
-            backgroundMusic.play();
-
-        }
-
-        function stopGame() {
-            clearInterval(gameInterval);
-
-            backgroundMusic.pause();
-            backgroundMusic.currentTime = 0;
-        }
 
         function animateKey(key) {
             const keyElement = document.querySelector(`.appearing-keys .animated-key`);
@@ -179,6 +186,37 @@
                 keyElement.style.animation = 'moveDown 2s linear forwards';
             }
         }
+
+        let gameInterval;
+
+        // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
+        function startGame() {
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(() => {
+                const randomKey = createRandomKey();
+                animateKey(randomKey);
+            }, 1824.608);
+
+            backgroundMusic.play();
+
+        }
+
+        // Todo: der skal implementeres;
+        // at "stopGame" kører når sangen afsluttes (efter fast tidsinterval)
+        // at "stopGame" kører en "saveScore" function - så der kan gemmes information til scoreboard
+        // at "stopGame" rydder den gamle score i "score:" tekstfeltet - efter det er gemt.
+        // Og vigtige: 
+        // funktion til minuspoint
+        // funktion til "health"/lignende -> gameover ved "x" antal missede taster
+        // funktion til at vise timing -> kosmetisk til at starte med; en linje der viser hvor tasterne rammer "på beatet"
+        function stopGame() {
+            clearInterval(gameInterval);
+
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+        }
+
+       
 
         function checkKeyPress(e) {
             const pressedKey = String.fromCharCode(e.keyCode);
