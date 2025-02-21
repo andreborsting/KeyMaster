@@ -97,8 +97,6 @@
         </div>
     </div> -->
 
-
-
     <!-- lydene til tasterne  -->
     <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto"></audio>
     <audio data-key="72" src="lvl2-sounds/H.wav" preload="auto"></audio>
@@ -126,10 +124,8 @@
         const keysSound = Array.from(document.querySelectorAll('.kbd-key'));
         keysSound.forEach(key => key.addEventListener('transitionend', removeTransition));
         window.addEventListener('keydown', playSound);
-    </script>
 
-    <!-- Forsøg på at implementere "appearingKeys" og pointsystem -->
-    <script>
+        // Implementering af "appearingKeys" og pointsystem 
         const backgroundMusic = document.getElementById('background-music');
 
         const keys = ['O', 'H', 'S', 'J', 'I', 'T'];
@@ -138,6 +134,8 @@
 
         let lastKey = '';
 
+
+        // skabelsen af random keys
         function createRandomKey() {
             let randomKey;
             do {
@@ -151,6 +149,13 @@
             keyElement.textContent = randomKey;
             keyElement.style.left = `${Math.random() * 80}%`;  // Random horizontal position
             keyElement.style.top = `-50px`; // Start just above the screen
+
+            // forsøger at oprette en div omkring tasten, som "tidsindikator"
+            const indicator = document.createElement('div');
+            indicator.classList.add('time-indicator');
+            keyElement.appendChild(indicator);
+            indicator.style.animation ='shrinkBorder 2s linear forwards';
+
             appearingKeysContainer.appendChild(keyElement);
             keyElement.addEventListener('animationend', () => {
                 keyElement.remove();
@@ -158,6 +163,9 @@
 
             return randomKey;
         }
+
+       
+
 
         function animateKey(key) {
             const keyElement = document.querySelector(`.appearing-keys .animated-key`);

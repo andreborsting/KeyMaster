@@ -48,7 +48,7 @@ button {
   margin-right: 10px;
   margin-bottom: 10px;
   font-size: 2rem; /* Øg skriftstørrelsen */
-  background-color: #000000; /* Grønt for en bedre visuel effekt */
+  background-color: #000000; /* farve for en bedre visuel effekt */
   color: white;
 }
 
@@ -112,6 +112,44 @@ h2 {
   text-align: center;
   width: 50px;
 }
+
+
+
+
+
+
+
+
+
+.time-indicator {
+  position: absolute;
+  top: -5px; /* Offset for at ramme omkring tasten */
+  left: -5px;
+  width: 70px; /* Større end .animated-key's 50px + padding */
+  height: 70px; /* Justeret til at passe med padding */
+  border: 0.3rem solid #ffc107; /* Start med gul ramme */
+  border-radius: 10px;
+  box-sizing: border-box;
+  pointer-events: none; /* Forhindrer interaktion med rammen */
+}
+
+@keyframes shrinkBorder {
+  from {
+    border-width: 0.3rem;
+    transform: scale(1);
+  }
+  to {
+    border-width: 0;
+    transform: scale(0.5); /* Krymper mod midten */
+  }
+}
+
+
+
+
+
+
+
 
 h3 {
   font-size: 50px;
