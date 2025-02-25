@@ -34,76 +34,90 @@
         <source src="/lvl2-sounds/OHSJIT1.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="ui-container">
-        <div class="button-container">
-            <button onclick="startGame()">Start</button>
-            <button onclick="stopGame()">Stop</button>
-        </div>
-        <div class="score-and-level-container">
-            <div class="score">
-                <h2>Score:&nbsp;<span id="score">0</span></h2>
-            </div>
-            <h2>Level: "OHSJIT"</h2>
-        </div>
+    <div id="start-screen" class="start-screen">
+        <h1>KeyMaster</h1>
+        <input type="text" id="playerName" placeholder="Indtast dit navn" required>
+        <button onclick="startGame()">Start Spil</button>
     </div>
 
-    <!-- Keyboard key codes for OHSJIT sequence:
-    O = 79
-    H = 72
-    S = 83
-    J = 74
-    I = 73
-    T = 84
-    Reference: keycode.info -->
+    <div id="game-screen" class="game-screen" style="display: none;">
+        <div class="ui-container">
+            <div class="button-container">
+                <button onclick="startGame()">Start</button>
+                <button onclick="stopGame()">Stop</button>
+            </div>
+            <div class="score-and-level-container">
+                <div class="score">
+                    <h2>Score:&nbsp;<span id="score">0</span></h2>
+                </div>
 
-    <!-- Container for keyboard keys. Each key uses data-key attribute to match with audio elements -->
-    <div class="key-container">
-        <div class="kbd-keys">
-            <div data-key="79" class="kbd-key">
-                <kbd>O</kbd>
-            </div>
-            <div data-key="72" class="kbd-key">
-                <kbd>H</kbd>
-            </div>
-            <div data-key="83" class="kbd-key">
-                <kbd>S</kbd>
-            </div>
-            <div data-key="74" class="kbd-key">
-                <kbd>J</kbd>
-            </div>
-            <div data-key="73" class="kbd-key">
-                <kbd>I</kbd>
-            </div>
-            <div data-key="84" class="kbd-key">
-                <kbd>T</kbd>
+                <div class="player-name">
+                    <input type="text" id="playerName" placeholder="Indtast dit navn" required>
+                </div>
+
+                <h2>Level: "OHSJIT"</h2>
             </div>
         </div>
+
+        <!-- Keyboard key codes for OHSJIT sequence:
+        O = 79
+        H = 72
+        S = 83
+        J = 74
+        I = 73
+        T = 84
+        Reference: keycode.info -->
+
+        <!-- Container for keyboard keys. Each key uses data-key attribute to match with audio elements -->
+        <div class="key-container">
+            <div class="kbd-keys">
+                <div data-key="79" class="kbd-key">
+                    <kbd>O</kbd>
+                </div>
+                <div data-key="72" class="kbd-key">
+                    <kbd>H</kbd>
+                </div>
+                <div data-key="83" class="kbd-key">
+                    <kbd>S</kbd>
+                </div>
+                <div data-key="74" class="kbd-key">
+                    <kbd>J</kbd>
+                </div>
+                <div data-key="73" class="kbd-key">
+                    <kbd>I</kbd>
+                </div>
+                <div data-key="84" class="kbd-key">
+                    <kbd>T</kbd>
+                </div>
+            </div>
+        </div>
+
+        <div class="playing-area">
+            <p>Tryk på tasterne som vises her </p>
+            <div class="appearing-keys">
+                <!-- de animerede taster/klodser skal vises her -->
+            </div>
+        </div>
+
+        <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
+         funktioner
+         kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
+        <!-- <div class="arrow-container">
+            <div class="arrows">
+                <arrow>venstre</arrow>
+                <arrow>højre</arrow>
+            </div>
+        </div> -->
+
+        <!-- lydene til tasterne  -->
+        <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto"></audio>
+        <audio data-key="72" src="lvl2-sounds/H.wav" preload="auto"></audio>
+        <audio data-key="83" src="lvl2-sounds/S.wav" preload="auto"></audio>
+        <audio data-key="74" src="lvl2-sounds/J.wav" preload="auto"></audio>
+        <audio data-key="73" src="lvl2-sounds/I.wav" preload="auto"></audio>
+        <audio data-key="84" src="lvl2-sounds/T.wav" preload="auto"></audio>
+
     </div>
-
-    <div class="playing-area">
-        <p>Tryk på tasterne som vises her </p>
-        <div class="appearing-keys">
-            <!-- de animerede taster/klodser skal vises her -->
-        </div>
-    </div>
-
-    <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
-     funktioner
-     kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
-    <!-- <div class="arrow-container">
-        <div class="arrows">
-            <arrow>venstre</arrow>
-            <arrow>højre</arrow>
-        </div>
-    </div> -->
-
-    <!-- lydene til tasterne  -->
-    <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto"></audio>
-    <audio data-key="72" src="lvl2-sounds/H.wav" preload="auto"></audio>
-    <audio data-key="83" src="lvl2-sounds/S.wav" preload="auto"></audio>
-    <audio data-key="74" src="lvl2-sounds/J.wav" preload="auto"></audio>
-    <audio data-key="73" src="lvl2-sounds/I.wav" preload="auto"></audio>
-    <audio data-key="84" src="lvl2-sounds/T.wav" preload="auto"></audio>
 
     <script>
         function playSound(e) {
@@ -178,6 +192,12 @@
 
         // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
         function startGame() {
+            // Skjul start screen
+            document.getElementById('start-screen').style.display = 'none';
+            // Vis game screen
+            document.getElementById('game-screen').style.display = 'block';
+            
+            // Eksisterende startGame kode her
             if (gameInterval) clearInterval(gameInterval);
             gameInterval = setInterval(() => {
                 const randomKey = createRandomKey();
@@ -185,7 +205,6 @@
             }, 1824.608);
 
             backgroundMusic.play();
-
         }
 
         // Todo: der skal implementeres;
@@ -198,9 +217,56 @@
         // funktion til at vise timing -> kosmetisk til at starte med; en linje der viser hvor tasterne rammer "på beatet"
         function stopGame() {
             clearInterval(gameInterval);
-
             backgroundMusic.pause();
             backgroundMusic.currentTime = 0;
+
+            const finalScore = score;
+
+            // Vis dialog til at indtaste navn
+            const playerName = prompt("Spillet er slut! Din score er " + finalScore + "\n\nIndtast dit navn (3-10 tegn):");
+
+
+
+            //tjekker om den sender korrekt data til API
+            const data = {
+                player: playerName,
+                score: finalScore
+            };
+            console.log('Sending data:', data);
+
+
+
+            if (!playerName) {
+                return; // Bruger trykkede cancel
+            }
+
+            if (playerName.length < 3 || playerName.length > 10) {
+                alert("Navn skal være mellem 3 og 10 tegn");
+                return;
+            }
+
+            // Send score til API
+            fetch('submit-highscore.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    player: playerName,
+                    score: finalScore
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert("Din score er gemt!");
+                    // Nulstil score display
+                    score = 0;
+                    document.getElementById('score').textContent = '0';
+                })
+                .catch(error => {
+                    alert("Der skete en fejl ved gemning af din score");
+                    console.error('Error:', error);
+                });
         }
 
 
