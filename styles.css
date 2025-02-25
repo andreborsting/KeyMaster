@@ -178,13 +178,6 @@ h2 {
   }
 }
 
-
-
-
-
-
-
-
 h3 {
   font-size: 50px;
 }
@@ -267,4 +260,10 @@ arrow {
 .start-screen h1 {
     font-size: 4rem;
     margin-bottom: 2rem;
+}
+
+
+#level-name{
+  text-align: center;
+  color: black;
 }

@@ -36,6 +36,7 @@
 
     <div id="start-screen" class="start-screen">
         <h1>KeyMaster</h1>
+        <h2 id="level-name">Level: "OHSJIT"</h2>
         <input type="text" id="playerName" placeholder="Indtast dit navn" required>
         <button onclick="startGame()">Start Spil</button>
     </div>
@@ -43,7 +44,7 @@
     <div id="game-screen" class="game-screen" style="display: none;">
         <div class="ui-container">
             <div class="button-container">
-                <button onclick="startGame()">Start</button>
+                <!-- <button onclick="startGame()">Start</button> -->
                 <button onclick="stopGame()">Stop</button>
             </div>
             <div class="score-and-level-container">
@@ -51,11 +52,7 @@
                     <h2>Score:&nbsp;<span id="score">0</span></h2>
                 </div>
 
-                <div class="player-name">
-                    <input type="text" id="playerName" placeholder="Indtast dit navn" required>
-                </div>
-
-                <h2>Level: "OHSJIT"</h2>
+                
             </div>
         </div>
 
@@ -276,12 +273,18 @@
             const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
 
             if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
-                score++;
+                score++; 
+                // minuspoint
+            } else {
+                score--; // Minuspoint for forkert tast
+                if (score < 0) score = 0; // Forhindre negativ score   
+                }
+
                 document.getElementById('score').textContent = score;
                 currentKeyElement.remove();
             }
 
-        }
+        
 
         window.addEventListener('keydown', checkKeyPress);
 
