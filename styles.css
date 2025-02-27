@@ -69,12 +69,22 @@ p{
   margin-left: 20px;
 }
 
-h2 {
+h1 {
   font-family: "Aref Ruqaa", serif;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   font-size: 20pt;
   display: flex;
-  justify-content: left;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+h2 {
+  font-family: "Aref Ruqaa", serif;
+  color: rgb(10, 48, 82);
+  font-size: 20pt;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   margin-left: 30px;
 }
@@ -262,8 +272,3 @@ arrow {
     margin-bottom: 2rem;
 }
 
-
-#level-name{
-  text-align: center;
-  color: black;
-}

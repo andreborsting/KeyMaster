@@ -38,16 +38,16 @@
     <div id="start-screen" class="start-screen">
         <h1>KeyMaster</h1>
         <h2 id="level-name">Level: "OHSJIT"</h2>
-        <input type="text" id="playerName" placeholder="Indtast dit navn" required>
-        <button onclick="startGame()">Start Spil</button>
+        <!-- <input type="text" id="playerName" placeholder="Indtast dit navn" required> -->
+        <button onclick="startGame()">START</button>
     </div>
 
     <div id="game-screen" class="game-screen" style="display: none;">
         <div class="ui-container">
             <div class="button-container">
                 <!-- <button onclick="startGame()">Start</button> -->
-                <button onclick="stopGame()">Stop</button>
-                <button onclick="startGame()">Genstart</button>
+                <button onclick="stopGame()">STOP</button>
+                <button onclick="startGame()">GENSTART</button>
             </div>
             <div class="score-and-level-container">
                 <div class="score">
@@ -177,9 +177,6 @@
             return randomKey;
         }
 
-
-
-
         function animateKey(key) {
             const keyElement = document.querySelector(`.appearing-keys .animated-key`);
             if (keyElement && keyElement.textContent === key) {
@@ -224,8 +221,6 @@
             // Vis dialog til at indtaste navn
             const playerName = prompt("Spillet er slut! Din score er " + finalScore + "\n\nIndtast dit navn (3-10 tegn):");
 
-
-
             //tjekker om den sender korrekt data til API
             const data = {
                 player: playerName,
@@ -233,10 +228,8 @@
             };
             console.log('Sending data:', data);
 
-
-
             if (!playerName) {
-                return; // Bruger trykkede cancel
+                return; // Bruger fortryder gemning
             }
 
             if (playerName.length < 3 || playerName.length > 10) {
@@ -257,18 +250,16 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    alert("Din score er gemt!");
+                    alert("Spillerens score blev gemt");
                     // Nulstil score display
                     score = 0;
                     document.getElementById('score').textContent = '0';
                 })
                 .catch(error => {
-                    alert("Der skete en fejl ved gemning af din score");
+                    alert("Der skete en fejl ved gemning af score");
                     console.error('Error:', error);
                 });
         }
-
-
 
         function checkKeyPress(e) {
             const pressedKey = String.fromCharCode(e.keyCode);
@@ -286,12 +277,9 @@
                 currentKeyElement.remove();
             }
 
-        
-
         window.addEventListener('keydown', checkKeyPress);
 
     </script>
-
 
 </body>
 
