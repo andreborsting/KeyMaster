@@ -39,8 +39,8 @@ button {
   font-family: "Yusei Magic", serif;
   font-weight: 400;
   font-style: normal;
-  border-radius: 10px;
-  width: 100px;
+  border-radius: 200px;
+  width: 150px;
   padding-bottom: 10px;
   margin-top: 10px ;
   margin-left: 10px;
@@ -110,13 +110,17 @@ h2 {
 }
 
 
+
+
+
 .animated-key {
+  border: 0.1rem solid;
   position: absolute;
   font-size: 2rem;
   color: white;
-  background-color: #333;
+  background-color:rgba(255, 0, 0, 0.4);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 200px;
   animation: moveDown 2s linear forwards;
   text-align: center;
   width: 50px;
@@ -171,8 +175,9 @@ h2 {
   left: -0px;
   width: 70px; /* Større end .animated-key's 50px + padding */
   height: 70px; /* Justeret til at passe med padding */
-  border: 1rem solid #50153c; /* Start med gul ramme */
-  border-radius: 100%;
+  /* border: 1rem solid #fcf828;  */
+  border: solid; 
+  border-radius: 40%;
   box-sizing: border-box;
   pointer-events: none; /* Forhindrer interaktion med rammen */
 }
@@ -181,12 +186,20 @@ h2 {
   from {
     border-width: 0.1rem;
     transform: scale(2);
+    border-color: rgba(255, 255, 255, 0);
   }
   to {
-    border-width: 0.1rem;
-    transform: scale(1); /* Krymper mod midten */
+    border-width: 2.5rem;
+    transform: scale(0.1);
+    border-color: yellow;
   }
 }
+
+
+
+
+
+
 
 h3 {
   font-size: 50px;
@@ -207,17 +220,17 @@ h3 {
 }
 
 .kbd-key {
-  color: aliceblue;
+  color: rgb(255, 255, 255);
   border: .2rem solid aliceblue;
-  border-radius: 20px;
+  border-radius: 200px;
   margin: 0.5rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
   transition: all .30s ease;
   width: 10rem;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4);
-  text-shadow: 0 0 .5rem black;
+  background: rgba(255, 0, 0, 0.4);
+  text-shadow: 0 0 .5rem rgb(0, 0, 0);
 }
 
 kbd {
