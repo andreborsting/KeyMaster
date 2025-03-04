@@ -201,6 +201,9 @@
             }, 1824.608);
 
             backgroundMusic.play();
+
+            // stopper spillet når sangen afsluttes
+            backgroundMusic.addEventListener('ended', stopGame);
         }
 
         // Todo: der skal implementeres;
