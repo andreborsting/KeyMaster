@@ -3,7 +3,7 @@
 
     $url = 'https://highscores.martindilling.com/api/v1/games';
     $payload = [
-        'title' => 'ChooseYourPoints'
+        'title' => 'KeyMaster'
     ];
     $responseJson = apiPost($url, $payload);
 

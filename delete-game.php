@@ -2,7 +2,7 @@
     
     require_once __DIR__ . '/api.php';
 
-    $url = 'https://highscores.martindilling.com/api/v1/games/21';
+    $url = 'https://highscores.martindilling.com/api/v1/games/22';
     $response = apiDelete($url);
 
     echo '<pre>';
