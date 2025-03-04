@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KeyMaster</title>
 
     <link rel="stylesheet" href="styles.css">
@@ -18,15 +19,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
-</head>
+    <style>
+        html {
+            font-size: 10px;
+            background: url(pictures/freepik-colorful1.jpg) bottom center;
+            background-size: cover;
+        }
 
-<style>
-    html {
-        font-size: 10px;
-        background: url(pictures/freepik-colorful1.jpg) bottom center;
-        background-size: cover;
-    }
-</style>
+        /* Add styles for health hearts */
+        .health-container {
+            display: flex;
+            gap: 10px;
+            margin: 10px;
+        }
+        
+        .heart {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            clip-path: path('M15,0 A8,8 0 0,0 0,8 C0,19 15,24 15,30 C15,24 30,19 30,8 A8,8 0 0,0 15,0 Z');
+            transition: opacity 0.3s ease;
+        }
+        
+        .heart.lost {
+            opacity: 0.3;
+        }
+    </style>
+</head>
 
 <body>
 
@@ -47,14 +66,17 @@
             <div class="button-container">
                 <!-- <button onclick="startGame()">Start</button> -->
                 <button onclick="stopGame()">STOP</button>
-                <button onclick="startGame()">GENSTART</button>
+                <button onclick="stopGame(); startGame()">GENSTART</button>
             </div>
             <div class="score-and-level-container">
                 <div class="score">
                     <h2>Score:&nbsp;<span id="score">0</span></h2>
                 </div>
-
-                
+                <div class="health-container">
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                </div>
             </div>
         </div>
 
@@ -147,6 +169,7 @@
 
         let lastKey = '';
 
+        let playerHealth = 3;
 
         // skabelsen af random keys
         function createRandomKey() {
@@ -188,6 +211,10 @@
 
         // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
         function startGame() {
+            // Reset health at game start
+            playerHealth = 3;
+            resetHealthDisplay();
+            
             // Skjul start screen
             document.getElementById('start-screen').style.display = 'none';
             // Vis game screen
@@ -206,14 +233,50 @@
             backgroundMusic.addEventListener('ended', stopGame);
         }
 
+        function decreaseHealth() {
+            playerHealth--;
+            updateHealthDisplay();
+            
+            if (playerHealth <= 0) {
+                stopGame();
+            }
+        }
+
+        function updateHealthDisplay() {
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach((heart, index) => {
+                if (index >= playerHealth) {
+                    heart.classList.add('lost');
+                }
+            });
+        }
+
+        function resetHealthDisplay() {
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach(heart => heart.classList.remove('lost'));
+        }
+
+        function checkKeyPress(e) {
+            const pressedKey = String.fromCharCode(e.keyCode);
+            const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
+
+            if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
+                score++; 
+            } else {
+                score--; // Minuspoint for forkert tast
+                if (score < 0) score = 0; // Forhindrer negativ score   
+                decreaseHealth(); // Decrease health on wrong key press
+            }
+
+            document.getElementById('score').textContent = score;
+            if (currentKeyElement) currentKeyElement.remove();
+        }
+
+        window.addEventListener('keydown', checkKeyPress);
+
         // Todo: der skal implementeres;
-        // at "stopGame" kører når sangen afsluttes (efter fast tidsinterval)
-        // at "stopGame" kører en "saveScore" function - så der kan gemmes information til scoreboard
         // at "stopGame" rydder den gamle score i "score:" tekstfeltet - efter det er gemt.
         // Og vigtige: 
-        // funktion til minuspoint
-        // funktion til "health"/lignende -> gameover ved "x" antal missede taster
-        // funktion til at vise timing -> kosmetisk til at starte med; en linje der viser hvor tasterne rammer "på beatet"
         function stopGame() {
             clearInterval(gameInterval);
             backgroundMusic.pause();
@@ -263,24 +326,6 @@
                     console.error('Error:', error);
                 });
         }
-
-        function checkKeyPress(e) {
-            const pressedKey = String.fromCharCode(e.keyCode);
-            const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
-
-            if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
-                score++; 
-                // minuspoint
-            } else {
-                score--; // Minuspoint for forkert tast
-                if (score < 0) score = 0; // Forhindre negativ score   
-                }
-
-                document.getElementById('score').textContent = score;
-                currentKeyElement.remove();
-            }
-
-        window.addEventListener('keydown', checkKeyPress);
 
     </script>
 
