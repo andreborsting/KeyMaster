@@ -50,7 +50,7 @@ if ($score <= 0) {
 }
 
 // Send score to highscore api.
-$url = 'https://highscores.martindilling.com/api/v1/games/12/highscores';
+$url = 'https://highscores.martindilling.com/api/v1/games/65/highscores';
 $payload = [
     'player' => $player,
     'score' => $score,
