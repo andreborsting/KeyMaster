@@ -171,6 +171,12 @@
 
         let playerHealth = 3;
 
+        // event listener rykket udenfor funktionerne
+        backgroundMusic.addEventListener('ended', () => {
+            console.log('Music ended, stopping game...');
+            stopGame();
+        });
+
         // skabelsen af random keys
         function createRandomKey() {
             let randomKey;
@@ -220,6 +226,10 @@
             // Vis game screen
             document.getElementById('game-screen').style.display = 'block';
             
+            // Reset score
+            score = 0;
+            document.getElementById('score').textContent = '0';
+            
             // Eksisterende startGame kode her
             if (gameInterval) clearInterval(gameInterval);
             gameInterval = setInterval(() => {
@@ -227,10 +237,8 @@
                 animateKey(randomKey);
             }, 1824.608);
 
+            backgroundMusic.currentTime = 0;
             backgroundMusic.play();
-
-            // stopper spillet når sangen afsluttes
-            backgroundMusic.addEventListener('ended', stopGame);
         }
 
         function decreaseHealth() {
@@ -275,7 +283,6 @@
         window.addEventListener('keydown', checkKeyPress);
 
         // Todo: der skal implementeres;
-        // at "stopGame" rydder den gamle score i "score:" tekstfeltet - efter det er gemt.
         // Og vigtige: 
         function stopGame() {
             clearInterval(gameInterval);
