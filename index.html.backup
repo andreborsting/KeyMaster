@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <meta charset="UTF-8">
+    <title>KeyMaster</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+    html {
+        font-size: 10px;
+        background: url(pictures/freepik-colorful1.jpg) bottom center;
+        background-size: cover;
+    }
+</style>
+
+<body>
+
+    <audio id="background-music" loop>
+        <source src="lvl1-sounds/KeyMasterLVL1_BG.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="ui-container">
+        <div class="button-container">
+            <button onclick="startGame()">Start</button>
+            <button onclick="stopGame()">Stop</button>
+        </div>
+        <div class="score-and-level-container">
+            <div class="score">
+                <h2>Score:&nbsp;<span id="score">0</span></h2>
+            </div>
+            <h2>Level: "QWERTY"</h2>
+        </div>
+    </div>
+
+    <!-- se "keycode.info" 
+     event.which (use .key or .code) 
+    q= 81
+    w= 87
+    e= 69
+    r= 82
+    t= 84
+    y= 89
+    -->
+
+
+    <!-- "Data-"(attribut) + "key"(custom attribut navn) -->
+    <div class="key-container">
+        <div class="kbd-keys">
+            <div data-key="81" class="kbd-key">
+                <kbd>Q</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="87" class="kbd-key">
+                <kbd>W</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="69" class="kbd-key">
+                <kbd>E</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="82" class="kbd-key">
+                <kbd>R</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="84" class="kbd-key">
+                <kbd>T</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+            <div data-key="89" class="kbd-key">
+                <kbd>Y</kbd>
+                <!-- <span class="kbd-soundname">Name</span> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="playing-area">
+        <p>Tryk på tasterne som vises her </p>
+        <div class="appearing-keys">
+            <!-- de animerede taster/klodser skal vises her -->
+        </div>
+    </div>
+    </div>
+
+
+    <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
+     funktioner
+     kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
+    <!-- <div class="arrow-container">
+        <div class="arrows">
+            <arrow>venstre</arrow>
+            <arrow>højre</arrow>
+        </div>
+    </div> -->
+
+
+
+    <!-- lydene til tasterne  -->
+    <audio data-key="81" src="lvl1-sounds/q.wav" preload="auto"></audio>
+    <audio data-key="87" src="lvl1-sounds/w.wav" preload="auto"></audio>
+    <audio data-key="69" src="lvl1-sounds/e.wav" preload="auto"></audio>
+    <audio data-key="82" src="lvl1-sounds/r.wav" preload="auto"></audio>
+    <audio data-key="84" src="lvl1-sounds/t.wav" preload="auto"></audio>
+    <audio data-key="89" src="lvl1-sounds/y.wav" preload="auto"></audio>
+
+    <script>
+        function playSound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+            if (!audio) return;
+
+            key.classList.add('playing');
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
+        }
+
+        const keysSound = Array.from(document.querySelectorAll('.kbd-key'));
+        keysSound.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
+
+        // Implementering af "appearingKeys" og pointsystem 
+        const backgroundMusic = document.getElementById('background-music');
+
+        const keys = ['O', 'H', 'S', 'J', 'I', 'T'];
+        const appearingKeysContainer = document.querySelector('.appearing-keys');
+        let score = 0;
+
+        let lastKey = '';
+
+
+        // skabelsen af random keys
+        function createRandomKey() {
+            let randomKey;
+            do {
+                randomKey = keys[Math.floor(Math.random() * keys.length)];
+            } while (randomKey === lastKey);
+
+            lastKey = randomKey;
+
+            const keyElement = document.createElement('div');
+            keyElement.classList.add('animated-key');
+            keyElement.textContent = randomKey;
+            keyElement.style.left = `${Math.random() * 80}%`;  // Random horizontal position
+            keyElement.style.top = `-50px`; // Start just above the screen
+
+            // forsøger at oprette en div omkring tasten, som "tidsindikator"
+            const indicator = document.createElement('div');
+            indicator.classList.add('time-indicator');
+            keyElement.appendChild(indicator);
+            indicator.style.animation ='shrinkBorder 2s linear forwards';
+
+            appearingKeysContainer.appendChild(keyElement);
+            keyElement.addEventListener('animationend', () => {
+                keyElement.remove();
+            });
+
+            return randomKey;
+        }
+
+       
+
+
+        function animateKey(key) {
+            const keyElement = document.querySelector(`.appearing-keys .animated-key`);
+            if (keyElement && keyElement.textContent === key) {
+                keyElement.style.animation = 'moveDown 2s linear forwards';
+            }
+        }
+
+        let gameInterval;
+
+        // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
+        function startGame() {
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(() => {
+                const randomKey = createRandomKey();
+                animateKey(randomKey);
+            }, 1824.608);
+
+            backgroundMusic.play();
+
+        }
+
+        // Todo: der skal implementeres;
+        // at "stopGame" kører når sangen afsluttes (efter fast tidsinterval)
+        // at "stopGame" kører en "saveScore" function - så der kan gemmes information til scoreboard
+        // at "stopGame" rydder den gamle score i "score:" tekstfeltet - efter det er gemt.
+        // Og vigtige: 
+        // funktion til minuspoint
+        // funktion til "health"/lignende -> gameover ved "x" antal missede taster
+        // funktion til at vise timing -> kosmetisk til at starte med; en linje der viser hvor tasterne rammer "på beatet"
+        function stopGame() {
+            clearInterval(gameInterval);
+
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+        }
+
+       
+
+        function checkKeyPress(e) {
+            const pressedKey = String.fromCharCode(e.keyCode);
+            const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
+
+            if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
+                score++;
+                document.getElementById('score').textContent = score;
+                currentKeyElement.remove();
+            }
+
+        }
+
+        window.addEventListener('keydown', checkKeyPress);
+
+    </script>
+
+
+</body>
+
+</html>

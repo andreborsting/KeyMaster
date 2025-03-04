@@ -30,92 +30,93 @@
 
 <body>
 
+    <!-- sangen er stadig for skinger, især i vokalen i starten -->
     <audio id="background-music" loop>
-        <source src="lvl1-sounds/KeyMasterLVL1_BG.mp3" type="audio/mpeg">
+        <source src="/lvl2-sounds/OHSJIT1.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="ui-container">
-        <div class="button-container">
-            <button onclick="startGame()">Start</button>
-            <button onclick="stopGame()">Stop</button>
-        </div>
-        <div class="score-and-level-container">
-            <div class="score">
-                <h2>Score:&nbsp;<span id="score">0</span></h2>
-            </div>
-            <h2>Level: "QWERTY"</h2>
-        </div>
+    <div id="start-screen" class="start-screen">
+        <h1>KeyMaster</h1>
+        <h2 id="level-name">Level: "OHSJIT"</h2>
+        <!-- <input type="text" id="playerName" placeholder="Indtast dit navn" required> -->
+        <button onclick="startGame()">START</button>
     </div>
 
-    <!-- se "keycode.info" 
-     event.which (use .key or .code) 
-    q= 81
-    w= 87
-    e= 69
-    r= 82
-    t= 84
-    y= 89
-    -->
+    <div id="game-screen" class="game-screen" style="display: none;">
+        <div class="ui-container">
+            <div class="button-container">
+                <!-- <button onclick="startGame()">Start</button> -->
+                <button onclick="stopGame()">STOP</button>
+                <button onclick="startGame()">GENSTART</button>
+            </div>
+            <div class="score-and-level-container">
+                <div class="score">
+                    <h2>Score:&nbsp;<span id="score">0</span></h2>
+                </div>
 
-
-    <!-- "Data-"(attribut) + "key"(custom attribut navn) -->
-    <div class="key-container">
-        <div class="kbd-keys">
-            <div data-key="81" class="kbd-key">
-                <kbd>Q</kbd>
-                <!-- <span class="kbd-soundname">Name</span> -->
-            </div>
-            <div data-key="87" class="kbd-key">
-                <kbd>W</kbd>
-                <!-- <span class="kbd-soundname">Name</span> -->
-            </div>
-            <div data-key="69" class="kbd-key">
-                <kbd>E</kbd>
-                <!-- <span class="kbd-soundname">Name</span> -->
-            </div>
-            <div data-key="82" class="kbd-key">
-                <kbd>R</kbd>
-                <!-- <span class="kbd-soundname">Name</span> -->
-            </div>
-            <div data-key="84" class="kbd-key">
-                <kbd>T</kbd>
-                <!-- <span class="kbd-soundname">Name</span> -->
-            </div>
-            <div data-key="89" class="kbd-key">
-                <kbd>Y</kbd>
-                <!-- <span class="kbd-soundname">Name</span> -->
+                
             </div>
         </div>
-    </div>
 
-    <div class="playing-area">
-        <p>Tryk på tasterne som vises her </p>
-        <div class="appearing-keys">
-            <!-- de animerede taster/klodser skal vises her -->
+        <!-- Keyboard key codes for OHSJIT sequence:
+        O = 79
+        H = 72
+        S = 83
+        J = 74
+        I = 73
+        T = 84
+        Reference: keycode.info -->
+
+        <!-- Container for keyboard keys. Each key uses data-key attribute to match with audio elements -->
+        <div class="key-container">
+            <div class="kbd-keys">
+                <div data-key="79" class="kbd-key">
+                    <kbd>O</kbd>
+                </div>
+                <div data-key="72" class="kbd-key">
+                    <kbd>H</kbd>
+                </div>
+                <div data-key="83" class="kbd-key">
+                    <kbd>S</kbd>
+                </div>
+                <div data-key="74" class="kbd-key">
+                    <kbd>J</kbd>
+                </div>
+                <div data-key="73" class="kbd-key">
+                    <kbd>I</kbd>
+                </div>
+                <div data-key="84" class="kbd-key">
+                    <kbd>T</kbd>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
 
-
-    <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
-     funktioner
-     kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
-    <!-- <div class="arrow-container">
-        <div class="arrows">
-            <arrow>venstre</arrow>
-            <arrow>højre</arrow>
+        <div class="playing-area">
+            <p>Tryk på tasterne som vises her </p>
+            <div class="appearing-keys">
+                <!-- de animerede taster/klodser skal vises her -->
+            </div>
         </div>
-    </div> -->
 
+        <!-- nu er pilene oprettede rent visuelt (html og css) men mangler 
+         funktioner
+         kan lave en PNG af pilene og indsætte istedet for tekst "venstre + højre" -->
+        <!-- <div class="arrow-container">
+            <div class="arrows">
+                <arrow>venstre</arrow>
+                <arrow>højre</arrow>
+            </div>
+        </div> -->
 
+        <!-- lydene til tasterne  -->
+        <audio data-key="79" src="lvl2-sounds/O.wav" preload="auto"></audio>
+        <audio data-key="72" src="lvl2-sounds/H.wav" preload="auto"></audio>
+        <audio data-key="83" src="lvl2-sounds/S.wav" preload="auto"></audio>
+        <audio data-key="74" src="lvl2-sounds/J.wav" preload="auto"></audio>
+        <audio data-key="73" src="lvl2-sounds/I.wav" preload="auto"></audio>
+        <audio data-key="84" src="lvl2-sounds/T.wav" preload="auto"></audio>
 
-    <!-- lydene til tasterne  -->
-    <audio data-key="81" src="lvl1-sounds/q.wav" preload="auto"></audio>
-    <audio data-key="87" src="lvl1-sounds/w.wav" preload="auto"></audio>
-    <audio data-key="69" src="lvl1-sounds/e.wav" preload="auto"></audio>
-    <audio data-key="82" src="lvl1-sounds/r.wav" preload="auto"></audio>
-    <audio data-key="84" src="lvl1-sounds/t.wav" preload="auto"></audio>
-    <audio data-key="89" src="lvl1-sounds/y.wav" preload="auto"></audio>
+    </div>
 
     <script>
         function playSound(e) {
@@ -166,7 +167,7 @@
             const indicator = document.createElement('div');
             indicator.classList.add('time-indicator');
             keyElement.appendChild(indicator);
-            indicator.style.animation ='shrinkBorder 2s linear forwards';
+            indicator.style.animation = 'shrinkBorder 2s linear forwards';
 
             appearingKeysContainer.appendChild(keyElement);
             keyElement.addEventListener('animationend', () => {
@@ -175,9 +176,6 @@
 
             return randomKey;
         }
-
-       
-
 
         function animateKey(key) {
             const keyElement = document.querySelector(`.appearing-keys .animated-key`);
@@ -190,6 +188,12 @@
 
         // Hvor mange milisekunder hvis beatet er 130BPM? 60.000/130=461,52     *2=923,08 *4=
         function startGame() {
+            // Skjul start screen
+            document.getElementById('start-screen').style.display = 'none';
+            // Vis game screen
+            document.getElementById('game-screen').style.display = 'block';
+            
+            // Eksisterende startGame kode her
             if (gameInterval) clearInterval(gameInterval);
             gameInterval = setInterval(() => {
                 const randomKey = createRandomKey();
@@ -198,6 +202,8 @@
 
             backgroundMusic.play();
 
+            // stopper spillet når sangen afsluttes
+            backgroundMusic.addEventListener('ended', stopGame);
         }
 
         // Todo: der skal implementeres;
@@ -210,29 +216,73 @@
         // funktion til at vise timing -> kosmetisk til at starte med; en linje der viser hvor tasterne rammer "på beatet"
         function stopGame() {
             clearInterval(gameInterval);
-
             backgroundMusic.pause();
             backgroundMusic.currentTime = 0;
-        }
 
-       
+            const finalScore = score;
+
+            // Vis dialog til at indtaste navn
+            const playerName = prompt("Spillet er slut! Din score er " + finalScore + "\n\nIndtast dit navn (3-10 tegn):");
+
+            //tjekker om den sender korrekt data til API
+            const data = {
+                player: playerName,
+                score: finalScore
+            };
+            console.log('Sending data:', data);
+
+            if (!playerName) {
+                return; // Bruger fortryder gemning
+            }
+
+            if (playerName.length < 3 || playerName.length > 10) {
+                alert("Navn skal være mellem 3 og 10 tegn");
+                return;
+            }
+
+            // Send score til API
+            fetch('submit-highscore.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    player: playerName,
+                    score: finalScore
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert("Spillerens score blev gemt");
+                    // Nulstil score display
+                    score = 0;
+                    document.getElementById('score').textContent = '0';
+                })
+                .catch(error => {
+                    alert("Der skete en fejl ved gemning af score");
+                    console.error('Error:', error);
+                });
+        }
 
         function checkKeyPress(e) {
             const pressedKey = String.fromCharCode(e.keyCode);
             const currentKeyElement = document.querySelector('.appearing-keys .animated-key');
 
             if (currentKeyElement && currentKeyElement.textContent === pressedKey) {
-                score++;
+                score++; 
+                // minuspoint
+            } else {
+                score--; // Minuspoint for forkert tast
+                if (score < 0) score = 0; // Forhindre negativ score   
+                }
+
                 document.getElementById('score').textContent = score;
                 currentKeyElement.remove();
             }
 
-        }
-
         window.addEventListener('keydown', checkKeyPress);
 
     </script>
-
 
 </body>
 
